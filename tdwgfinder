@@ -1,0 +1,17 @@
+data = []
+import re
+import csv
+regex = r' b(\w*Northern Europe|Middle Europe|Southwestern Europe|Southeastern Europe|Eastern Europe|Northern Europe|Macaronesia|West Tropical Africa|West-Central Tropical Africa|Northeast Tropical Africa|East Tropical Africa|South Tropical Africa|Southern Africa|Middle Atlantic Ocean|Western Indian Ocean|Siberia|Russian Far East|Middle Asia|Caucasus|Western Asia|Arabian Peninsula|China|Mongolia|Eastern Asia|Indian-Subcontinent|Indo-China|Malesia|Papuasia|Australia|New Zealand|Southwestern Pacific|South-Central Pacific|Northwestern Pacific|North-Central Pacific|Subarctic America|Western Canada|Eastern Canada|Northwestern U.S.A|North-Central U.S.A|Northeastern U.S.A|Southwestern U.S.A|South-Central U.S.A|Southeastern U.S.A|Mexico|Central America|Caribbean|Northern South America|Western South America|Brazil|Southern South America|Subantarctic Islands|Antarctic Continent\w*)\b'
+with open('Find Distributions.csv', 'r') as f:
+    reader = csv.reader(f)
+
+    for row in reader:
+        TDWG = re.findall(regex, row)
+        row.append(TDWG(row[0]))
+        print(row)
+        data.append(row)
+
+with open('DistributionsOutput.csv', 'w') as f:
+    writer = csv.writer(f)
+    writer.writerows(data)        
+    
